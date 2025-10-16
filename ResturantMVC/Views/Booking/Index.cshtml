@@ -1,0 +1,39 @@
+﻿@model ResturantMVC.Models.BookingViewModel
+
+<div class="container mt-5">
+    <h1>Boka bord</h1>
+    <p>Fyll i formuläret för att reservera ett bord hos oss.</p>
+
+    <form asp-action="Index" method="post" class="mt-4">
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Phone" class="form-label"></label>
+            <input asp-for="Phone" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="StartTime" class="form-label">Datum & tid</label>
+            <input asp-for="StartTime" type="datetime-local" class="form-control" />
+            <span asp-validation-for="StartTime" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Guest" class="form-label">Antal gäster</label>
+            <input asp-for="Guest" class="form-control" />
+            <span asp-validation-for="Guest" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-success">Boka</button>
+    </form>
+</div>

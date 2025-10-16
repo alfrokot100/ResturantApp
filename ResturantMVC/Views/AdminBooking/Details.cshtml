@@ -1,0 +1,14 @@
+﻿@model ResturantMVC.Models.BookingViewModel
+
+<h2>Bokningsdetaljer</h2>
+
+<ul class="list-group">
+    <li class="list-group-item"><strong>Namn:</strong> @Model.Name</li>
+    <li class="list-group-item"><strong>Email:</strong> @Model.Email</li>
+    <li class="list-group-item"><strong>Telefon:</strong> @Model.Phone</li>
+    <li class="list-group-item"><strong>Datum:</strong> @Model.StartTime</li>
+    <li class="list-group-item"><strong>Antal gäster:</strong> @Model.Guest</li>
+</ul>
+
+
+<a asp-action="Index" class="btn btn-secondary mt-3">Tillbaka</a>

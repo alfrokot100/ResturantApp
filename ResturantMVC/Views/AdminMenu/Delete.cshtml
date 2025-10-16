@@ -1,0 +1,17 @@
+﻿@model ResturantMVC.Models.DishViewModel
+
+<h2>Ta bort rätt</h2>
+
+<p>Är du säker på att du vill ta bort denna rätt?</p>
+
+<ul class="list-group mb-3">
+    <li class="list-group-item"><strong>Namn:</strong> @Model.Name</li>
+    <li class="list-group-item"><strong>Beskrivning:</strong> @Model.Description</li>
+    <li class="list-group-item"><strong>Pris:</strong> @Model.Price kr</li>
+</ul>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Ta bort</button>
+    <a asp-action="Index" class="btn btn-secondary">Avbryt</a>
+</form>

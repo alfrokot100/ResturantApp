@@ -1,0 +1,14 @@
+﻿@model ResturantMVC.Models.BookingViewModel
+
+<h2>Ta bort bokning</h2>
+
+<div>
+    <h4>Är du säker på att du vill ta bort denna bokning?</h4>
+    <p><strong>@Model.Name</strong> - @Model.StartTime.ToString("yyyy-MM-dd HH:mm")</p>
+
+    <form asp-action="Confirmed" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Ja, ta bort</button>
+        <a asp-action="Index" class="btn btn-secondary">Avbryt</a>
+    </form>
+</div>

@@ -1,0 +1,31 @@
+﻿@model ResturantMVC.Models.BookingViewModel
+
+<h2>Skapa ny bokning</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="StartTime"></label>
+        <input asp-for="StartTime" type="datetime-local" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Guest"></label>
+        <input asp-for="Guest" type="number" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Phone"></label>
+        <input asp-for="Phone" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="TableId_FK">Bord</label>
+        <input asp-for="TableId_FK" type="number" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Spara</button>
+</form>

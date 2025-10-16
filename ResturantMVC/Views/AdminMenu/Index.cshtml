@@ -1,0 +1,30 @@
+﻿@model IEnumerable<ResturantMVC.Models.DishViewModel>
+
+<h2>Alla rätter</h2>
+
+<a asp-action="Create" class="btn btn-success mb-3">➕ Ny rätt</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Namn</th>
+            <th>Pris</th>
+            <th>Beskrivning</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dish in Model)
+        {
+            <tr>
+                <td>@dish.Name</td>
+                <td>@dish.Price kr</td>
+                <td>@dish.Description</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@dish.Id" class="btn btn-warning btn-sm">Ändra</a>
+                    <a asp-action="Delete" asp-route-id="@dish.Id" class="btn btn-danger btn-sm">Ta bort</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
