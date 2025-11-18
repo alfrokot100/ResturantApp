@@ -1,4 +1,5 @@
 ﻿using ResturantBooking.DTOs.BookingDTOs;
+using ResturantBooking.DTOs.TableDTOs;
 using ResturantBooking.Models;
 using ResturantBooking.Repositories.IRepositories;
 using ResturantBooking.Services.IServices;
@@ -17,6 +18,8 @@ namespace ResturantBooking.Services
             _bookingRepo = bookingRepo;
             _customerRepo = customerRepo;
         }
+
+        //Hämtar alla bokningar
         public async Task<List<BookingDTO>> GetAllBookingsAsync()
         {
             var bookings = await _bookingRepo.GetAllBookingsAsync();
@@ -51,21 +54,17 @@ namespace ResturantBooking.Services
                 Name = booking.Customer.Name
             };
         }
+        //Skapar en bokning
         public async Task<BookingDTO?> CreateBookingAsync(BookingCreateDTO dto)
         {
             var existingBookings = await _bookingRepo.GetBookingsByTableAsync(dto.TableId_FK);
 
-            bool conflict = existingBookings.Any(b =>
-             b.StartTime != DateTime.MinValue &&
-             b.StartTime.AddHours(-2) <= dto.StartTime &&
-             dto.StartTime <= b.StartTime.AddHours(2)
-            );
+            bool conflict = false; 
 
             if (conflict) { return null; }
 
-            //Hämta eller skapa kund
+            // Hämta/skapar kund
             int customerId;
-            //var existingCustomer = await _customerRepo.GetCustomerByEmailAsync(dto.Email);
             Customer? existingCustomer = null;
 
             if (!string.IsNullOrWhiteSpace(dto.Email))
@@ -107,9 +106,11 @@ namespace ResturantBooking.Services
                 StartTime = dto.StartTime
             };
             var bookingId = await _bookingRepo.CreateBookingAsync(booking);
-            var createdBooking = await _bookingRepo.GetBookingByIdAsync(bookingId);
+            var createdBooking = await _bookingRepo.GetBookingByIdAsync(bookingId); //Bokningen sparas via repo
 
             if (createdBooking == null) { return null; }
+            Console.WriteLine($"[BookingService] Skapar bokning: Kund={dto.Name}, Bord={dto.TableId_FK}, Gäster={dto.Guest}, Tid={dto.StartTime}");
+
 
             //Returnera DTO
             return new BookingDTO
@@ -145,24 +146,17 @@ namespace ResturantBooking.Services
 
                 await _customerRepo.UpdateCustomerAsync(existingBooking.Customer);
             }
-
-            //var booking = new Booking
-            //{
-            //    Id = bookingDto.Id,
-            //    TableId_FK = bookingDto.TableId_FK,
-            //    CustomerId_FK = bookingDto.CustomerId_FK,
-            //    Guest = bookingDto.Guest,
-            //    StartTime = bookingDto.StartTime,
-            //};
-
             return await _bookingRepo.UpdateBookingAsync(existingBooking);
         }
         public async Task<bool> DeleteBookingAsync(int id)
         {
             return await _bookingRepo.DeleteBookingAsync(id);
         }
-        public async Task<List<ResturantTable>> GetAvailableTablesAsync(DateTime startTime, int guests)
+
+        // Hämtar lediga bord via repository
+        public async Task<List<TableDTO>> GetAvailableTablesAsync(DateTime startTime, int guests)
         {
+            //Länken mellan frontend och databas
             return await _bookingRepo.GetAvailableTablesAsync(startTime, guests);
         }
     }

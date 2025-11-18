@@ -1,4 +1,5 @@
-﻿using ResturantBooking.Models;
+﻿using ResturantBooking.DTOs.TableDTOs;
+using ResturantBooking.Models;
 
 namespace ResturantBooking.Repositories.IRepositories
 {
@@ -12,7 +13,7 @@ namespace ResturantBooking.Repositories.IRepositories
         Task<List<Booking>> GetBookingsByTableAsync(int tableId);
 
         //Extra
-        Task<List<ResturantTable>> GetAvailableTablesAsync(DateTime startTime, int guests);
+        Task<List<TableDTO>> GetAvailableTablesAsync(DateTime startTime, int guests);
 
     }
 }

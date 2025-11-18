@@ -12,8 +12,8 @@ using ResturantBooking.Data;
 namespace ResturantBooking.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20250905101228_NewTableName")]
-    partial class NewTableName
+    [Migration("20251105161502_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -92,13 +92,16 @@ namespace ResturantBooking.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("PhoneNbr")
-                        .IsRequired()
+                    b.Property<string>("Phone")
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
@@ -110,14 +113,30 @@ namespace ResturantBooking.Migrations
                         new
                         {
                             Id = 1,
+                            Email = "test@gmail.com",
                             Name = "Lasse Ricardo",
-                            PhoneNbr = "0703873563"
+                            Phone = "0703873563"
                         },
                         new
                         {
                             Id = 2,
+                            Email = "nytest@gmail.com",
                             Name = "Alfie Smith",
-                            PhoneNbr = "0765376534"
+                            Phone = "0765376534"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "karin@gmail.com",
+                            Name = "Karin Andersson",
+                            Phone = "0734445566"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Email = "olliee@live.se",
+                            Name = "Ollie Paul",
+                            Phone = "0708889999"
                         });
                 });
 
@@ -168,6 +187,30 @@ namespace ResturantBooking.Migrations
                             IsPopular = false,
                             Name = "Caesarsallad",
                             Price = 120m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Husets lasagne med köttfärs, ost och tomatsås.",
+                            IsPopular = true,
+                            Name = "Lasagne al Forno",
+                            Price = 135m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Italiensk dessert med mascarpone och espresso.",
+                            IsPopular = true,
+                            Name = "Tiramisu",
+                            Price = 75m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Pasta med grillade grönsaker och pesto.",
+                            IsPopular = false,
+                            Name = "Vegetarisk pasta",
+                            Price = 110m
                         });
                 });
 
@@ -207,13 +250,19 @@ namespace ResturantBooking.Migrations
                             Id = 3,
                             Capacity = 6,
                             Number = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Capacity = 8,
+                            Number = 4
                         });
                 });
 
             modelBuilder.Entity("ResturantBooking.Models.Booking", b =>
                 {
                     b.HasOne("ResturantBooking.Models.Customer", "Customer")
-                        .WithMany("Bokkings")
+                        .WithMany("Bookings")
                         .HasForeignKey("CustomerId_FK")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -231,7 +280,7 @@ namespace ResturantBooking.Migrations
 
             modelBuilder.Entity("ResturantBooking.Models.Customer", b =>
                 {
-                    b.Navigation("Bokkings");
+                    b.Navigation("Bookings");
                 });
 
             modelBuilder.Entity("ResturantBooking.Models.ResturantTable", b =>

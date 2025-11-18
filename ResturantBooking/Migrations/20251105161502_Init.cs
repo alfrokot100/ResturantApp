@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace ResturantBooking.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,7 +34,8 @@ namespace ResturantBooking.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    PhoneNbr = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
+                    Phone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -57,7 +60,7 @@ namespace ResturantBooking.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tables",
+                name: "ResturantTables",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -67,7 +70,7 @@ namespace ResturantBooking.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tables", x => x.Id);
+                    table.PrimaryKey("PK_ResturantTables", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -91,11 +94,50 @@ namespace ResturantBooking.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Bookings_Tables_TableId_FK",
+                        name: "FK_Bookings_ResturantTables_TableId_FK",
                         column: x => x.TableId_FK,
-                        principalTable: "Tables",
+                        principalTable: "ResturantTables",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Admins",
+                columns: new[] { "Id", "PasswordHash", "Username" },
+                values: new object[] { 1, "testhash123", "admin" });
+
+            migrationBuilder.InsertData(
+                table: "Customers",
+                columns: new[] { "Id", "Email", "Name", "Phone" },
+                values: new object[,]
+                {
+                    { 1, "test@gmail.com", "Lasse Ricardo", "0703873563" },
+                    { 2, "nytest@gmail.com", "Alfie Smith", "0765376534" },
+                    { 3, "karin@gmail.com", "Karin Andersson", "0734445566" },
+                    { 4, "olliee@live.se", "Ollie Paul", "0708889999" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Menus",
+                columns: new[] { "Id", "Description", "ImageURL", "IsPopular", "Name", "Price" },
+                values: new object[,]
+                {
+                    { 1, "Klassisk pizza med mozzarella", null, true, "Pizza Margherita", 99m },
+                    { 2, "Sallad med kyckling och parmesan", null, false, "Caesarsallad", 120m },
+                    { 3, "Husets lasagne med köttfärs, ost och tomatsås.", null, true, "Lasagne al Forno", 135m },
+                    { 4, "Italiensk dessert med mascarpone och espresso.", null, true, "Tiramisu", 75m },
+                    { 5, "Pasta med grillade grönsaker och pesto.", null, false, "Vegetarisk pasta", 110m }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ResturantTables",
+                columns: new[] { "Id", "Capacity", "Number" },
+                values: new object[,]
+                {
+                    { 1, 2, 1 },
+                    { 2, 4, 2 },
+                    { 3, 6, 3 },
+                    { 4, 8, 4 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -125,7 +167,7 @@ namespace ResturantBooking.Migrations
                 name: "Customers");
 
             migrationBuilder.DropTable(
-                name: "Tables");
+                name: "ResturantTables");
         }
     }
 }

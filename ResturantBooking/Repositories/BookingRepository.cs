@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ResturantBooking.Data;
+using ResturantBooking.DTOs.TableDTOs;
 using ResturantBooking.Models;
 using ResturantBooking.Repositories.IRepositories;
 
@@ -9,7 +10,7 @@ namespace ResturantBooking.Repositories
     public class BookingRepository : IBookingRepository
     {
         private readonly AppDBContext _context;
-
+        //Dependecy injection av dbContext
         public BookingRepository(AppDBContext context)
         {
             _context = context;
@@ -50,7 +51,9 @@ namespace ResturantBooking.Repositories
             _context.Bookings.Remove(booking);
             return await _context.SaveChangesAsync() > 0;
         }
-        public async Task<List<ResturantTable>> GetAvailableTablesAsync(DateTime startTime, int guests)
+
+        //Hämtar ut lediga bord
+        public async Task<List<TableDTO>> GetAvailableTablesAsync(DateTime startTime, int guests)
         {
             var endTime = startTime.AddHours(2);
 
@@ -63,6 +66,12 @@ namespace ResturantBooking.Repositories
                 .Where(t => !t.Bookings.Any(b =>
                     (startTime < b.StartTime.AddHours(2)) &&
                     (endTime > b.StartTime)))
+                .Select(t => new TableDTO //Mappar till tableDTO
+                {
+                    Id = t.Id,
+                    Number = t.Number,
+                    Capacity = t.Capacity
+                })
                 .ToListAsync();
 
             return availableTables;

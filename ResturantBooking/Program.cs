@@ -40,10 +40,8 @@ namespace ResturantBooking
             builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 
 
-
-
-
-
+            builder.Services.AddCors();
+            //Lite kontroll
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -89,6 +87,19 @@ namespace ResturantBooking
                     };
                 });
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowReactApp", policy =>
+                {
+                    policy
+                        .WithOrigins("http://localhost:5173") // eller den port din React-app kör på
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials();
+                });
+            });
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -96,9 +107,13 @@ namespace ResturantBooking
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                app.UseDeveloperExceptionPage();//Loggning för felsökning
+
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("AllowReactApp");
+
             app.UseAuthentication();
             app.UseAuthorization();
 

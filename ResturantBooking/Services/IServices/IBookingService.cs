@@ -1,4 +1,5 @@
 ﻿using ResturantBooking.DTOs.BookingDTOs;
+using ResturantBooking.DTOs.TableDTOs;
 using ResturantBooking.Models;
 
 namespace ResturantBooking.Services.IServices
@@ -12,7 +13,7 @@ namespace ResturantBooking.Services.IServices
         Task<bool> DeleteBookingAsync(int id);
         
         // Extra för kravet: lediga bord
-        Task<List<ResturantTable>> GetAvailableTablesAsync(DateTime startTime, int guests);
+        Task<List<TableDTO>> GetAvailableTablesAsync(DateTime startTime, int guests);
     }
 }
 

@@ -120,6 +120,20 @@ namespace ResturantBooking.Migrations
                             Email = "nytest@gmail.com",
                             Name = "Alfie Smith",
                             Phone = "0765376534"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "karin@gmail.com",
+                            Name = "Karin Andersson",
+                            Phone = "0734445566"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Email = "olliee@live.se",
+                            Name = "Ollie Paul",
+                            Phone = "0708889999"
                         });
                 });
 
@@ -170,6 +184,30 @@ namespace ResturantBooking.Migrations
                             IsPopular = false,
                             Name = "Caesarsallad",
                             Price = 120m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Husets lasagne med köttfärs, ost och tomatsås.",
+                            IsPopular = true,
+                            Name = "Lasagne al Forno",
+                            Price = 135m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Italiensk dessert med mascarpone och espresso.",
+                            IsPopular = true,
+                            Name = "Tiramisu",
+                            Price = 75m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Pasta med grillade grönsaker och pesto.",
+                            IsPopular = false,
+                            Name = "Vegetarisk pasta",
+                            Price = 110m
                         });
                 });
 
@@ -209,6 +247,12 @@ namespace ResturantBooking.Migrations
                             Id = 3,
                             Capacity = 6,
                             Number = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Capacity = 8,
+                            Number = 4
                         });
                 });
 

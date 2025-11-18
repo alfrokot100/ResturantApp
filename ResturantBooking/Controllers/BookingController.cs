@@ -18,7 +18,7 @@ namespace ResturantBooking.Controllers
         
         [HttpGet]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> GetAllBookings()
+        public async Task<IActionResult> GetAllBookings() //Hämtar alla bokningar - endast admin
         {
             var bookings = await _bookingService.GetAllBookingsAsync();
             return Ok(bookings);
@@ -65,8 +65,10 @@ namespace ResturantBooking.Controllers
             return NoContent();
         }
 
+        //Letar efter lediga bord vid en viss tidpunkt
         [HttpGet("available")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAvailableTables(DateTime startTime, int guests)
         {
             var tables = await _bookingService.GetAvailableTablesAsync(startTime, guests);
