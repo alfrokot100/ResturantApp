@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\source\\repos\\ResturantMVC\\ResturantMVC.csproj": {}
+    "C:\\Users\\Admin\\source\\repos\\ResturantApp\\ResturantMVC\\ResturantMVC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\source\\repos\\ResturantBooking\\ResturantBooking.csproj": {
+    "C:\\Users\\Admin\\source\\repos\\ResturantApp\\ResturantBooking\\ResturantBooking.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\ResturantBooking\\ResturantBooking.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\ResturantApp\\ResturantBooking\\ResturantBooking.csproj",
         "projectName": "ResturantBooking",
-        "projectPath": "C:\\Users\\Admin\\source\\repos\\ResturantBooking\\ResturantBooking.csproj",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\ResturantApp\\ResturantBooking\\ResturantBooking.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\source\\repos\\ResturantBooking\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\source\\repos\\ResturantApp\\ResturantBooking\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -98,14 +98,14 @@
         }
       }
     },
-    "C:\\Users\\Admin\\source\\repos\\ResturantMVC\\ResturantMVC.csproj": {
+    "C:\\Users\\Admin\\source\\repos\\ResturantApp\\ResturantMVC\\ResturantMVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\ResturantMVC\\ResturantMVC.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\ResturantApp\\ResturantMVC\\ResturantMVC.csproj",
         "projectName": "ResturantMVC",
-        "projectPath": "C:\\Users\\Admin\\source\\repos\\ResturantMVC\\ResturantMVC.csproj",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\ResturantApp\\ResturantMVC\\ResturantMVC.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\source\\repos\\ResturantMVC\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\source\\repos\\ResturantApp\\ResturantMVC\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -123,8 +123,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Admin\\source\\repos\\ResturantBooking\\ResturantBooking.csproj": {
-                "projectPath": "C:\\Users\\Admin\\source\\repos\\ResturantBooking\\ResturantBooking.csproj"
+              "C:\\Users\\Admin\\source\\repos\\ResturantApp\\ResturantBooking\\ResturantBooking.csproj": {
+                "projectPath": "C:\\Users\\Admin\\source\\repos\\ResturantApp\\ResturantBooking\\ResturantBooking.csproj"
               }
             }
           }

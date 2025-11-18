@@ -12,15 +12,15 @@ namespace ResturantMVC
             builder.Services.AddControllersWithViews();
             builder.Services.AddHttpClient<MenuApiService>(client =>
             {
-                client.BaseAddress = new Uri("https://localhost:7219/"); // Din API-url
+                client.BaseAddress = new Uri("https://localhost:7219/"); // API-url
             });
             builder.Services.AddHttpClient<BookingApiService>(client =>
             {
-                client.BaseAddress = new Uri("https://localhost:7219/"); // ditt API
+                client.BaseAddress = new Uri("https://localhost:7219/"); //API-url
             });
             builder.Services.AddHttpClient<AuthApiService>(client =>
             {
-                client.BaseAddress = new Uri("https://localhost:7219/");
+                client.BaseAddress = new Uri("https://localhost:7219/"); //API-url
             });
 
             builder.Services.AddSession();
